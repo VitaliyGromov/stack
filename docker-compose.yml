@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  nginx_stack:
+    image: nginx:1.23.4
+    volumes:
+      - ./:/var/www/
+      - ./_docker/nginx/conf.d/:/etc/nginx/conf.d/
+    ports:
+    - "80:80"
+    depends_on:
+      - app_stack
+    container_name: nginx_stack
+      
+  app_stack:
+    build: 
+      context: .
+      dockerfile: _docker/app/Dockerfile
+    volumes:
+      - ./:/var/www
+    depends_on:
+      - database_stack
+    container_name: app_stack
+  
+  database_stack:
+    image: postgres:15.2
+    restart: always
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    ports:
+      - "5433:5433"
+    
+    environment:
+      - POSTGRES_USER=vitaliy
+      - POSTGRES_PASSWORD=gromovVitaliy2003
+      - PGDATA=/var/lib/postgresql/data/app_stack/ 
+    container_name: database_stack
