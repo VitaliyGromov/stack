@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class DishProduct extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+
+    public $fillable = [
+        'dish_id',
+        'product_id',
+        'quantity'
+    ];
 }

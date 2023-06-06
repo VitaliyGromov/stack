@@ -31,6 +31,10 @@
                         {{__('Блюда')}}
                     </x-button-link>
 
+                    <x-button-link href="{{ route('cooked_dishes') }}" color="light">
+                        {{__('Приготовленные блюда')}}
+                    </x-button-link>
+
                     <x-button-link href="{{ route('products') }}" color="light">
                         {{__('Продукты')}}
                     </x-button-link>

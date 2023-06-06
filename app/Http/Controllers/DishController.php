@@ -21,6 +21,15 @@ class DishController extends Controller
         return redirect('dishes');
     }
 
+    public function show(Dish $dish)
+    {  
+        $products = $dish->products->toArray();
+
+        // dd($products);
+
+        return view('dishes.show', compact(['dish', 'products']));
+    }
+
     public function update()
     {
         return 'dish update request';

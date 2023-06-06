@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\CookedDishes;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Dish;
@@ -18,7 +19,7 @@ class ViewServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        View::composer('dishes.index', function($view){
+        View::composer(['dishes.index', 'components.dish-select'], function($view){
             $view->with('dishes', Dish::all());
         });
 
@@ -32,6 +33,10 @@ class ViewServiceProvider extends ServiceProvider
 
         View::composer('orders.index', function($view){
             $view->with('orders', Order::all());
+        });
+
+        View::composer('cookedDishes.index', function($view){
+            $view->with('cookedDishes', CookedDishes::all());
         });
     }
 }

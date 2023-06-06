@@ -19,7 +19,7 @@
               <tr>
                   <th scope="row">{{$dish->id}}</th>
                   <td>{{$dish->dish_name}}</td>
-                  <td><a>Перейти</a></td>
+                  <td><a href="{{route('dishes.show', $dish->id)}}">Перейти</a></td>
                 </tr>
               @endforeach
           </tbody>

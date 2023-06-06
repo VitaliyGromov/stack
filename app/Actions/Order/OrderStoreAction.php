@@ -10,9 +10,11 @@ class OrderStoreAction
     {
         Order::create($validated);
 
-        $product = Product::where('id', $validated['product_id'])->first();
+        $product = Product::where('id', $validated['product_id'])->first()->toArray();
 
-        $newQuantity =  $product->toArray()['quantity'] + $validated['quantity'];
+        $productQuantity = $product['quantity'];
+
+        $newQuantity =  $productQuantity + $validated['quantity'];
 
         $product->update(['quantity' => $newQuantity]);
     }

@@ -16,4 +16,5 @@ class ProductStoreAction
         Product::create([...$validated, 'quantity' => $quantity]);
     }
 }
+
 ?>
