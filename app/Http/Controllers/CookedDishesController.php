@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\CookedDishes\CookedDishesStoreAction;
 use App\Exceptions\NotEnoughProductInStockException;
 use App\Http\Requests\CookedDishes\CookedDishesStoreRequest;
+use App\Models\Dish;
 
 class CookedDishesController extends Controller
 {

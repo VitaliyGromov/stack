@@ -23,6 +23,7 @@ class CookedDishesStoreAction
         CookedDishes::create($validated);
 
         foreach($products as $product){
+
             $updatedProduct = Product::where('id', $product['id']);
 
             $newProductQuantity = $product['quantity'] - ($product['pivot']['quantity'] * $validated['quantity']);

@@ -13,6 +13,6 @@ class NotEnoughProductInStockException extends Exception
 
     public function render()
     {
-        return view('errors.not-enough-product-in-stock.blade.php'); //TODO временно
+        return view('errors.not-enough-product-in-stock'); //TODO временно
     }
 }

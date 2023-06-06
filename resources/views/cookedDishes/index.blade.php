@@ -14,7 +14,7 @@
                 <x-modal-button modalId="cookDish">
                   {{__('Добавить блюдо')}}
                 </x-modal-button>
-                <form action="{{route('cooked_dishes.store')}}" method="POST">
+                <form action="{{ route('cooked_dishes.store') }}" method="POST">
                   @csrf
                   <x-modal modalId="cookDish" title="{{__('Новое блюдо')}}">
                     <x-dish-select/>
@@ -50,7 +50,7 @@
           <x-modal-button modalId="cookDish">
             {{__('Добавить блюдо')}}
           </x-modal-button>
-          <form action="{{route('dish.store')}}" method="POST">
+          <form action="{{route('cooked_dishes.store') }}" method="POST">
             @csrf
             <x-modal modalId="cookDish" title="{{__('Новое блюдо')}}">
               <x-dish-select/>

@@ -14,7 +14,7 @@ class CookedDishesStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'dish_id' => ['required', 'integer'],
+            'dish_id' => ['required'],
             'quantity' => ['required', 'integer', 'max:10'],
         ];
     }
