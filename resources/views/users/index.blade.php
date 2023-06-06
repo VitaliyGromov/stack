@@ -38,7 +38,25 @@
             <form action="{{route('users.store')}}" method="POST">
               @csrf
               <x-modal modalId="createUser" title="{{__('Добавить пользователя')}}">
-                <x-user-form-body/>
+                <x-form-input inputName="name">
+                  {{__('Имя')}}
+                </x-form-input>
+              
+                <x-form-input inputName="last_name">
+                  {{__('Фамилия')}}
+                </x-form-input>
+              
+                <x-form-input inputName="surname">
+                  {{__('Отчество')}}
+                </x-form-input>
+              
+                <x-form-input inputName="email" inputType="email">
+                  {{__('Email')}}
+                </x-form-input>
+              
+                <x-form-input inputName="password" inputType="password">
+                  {{__('Пароль')}}
+                </x-form-input>
               </x-modal>
             </form>
           </div>

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Dish\DishStoreRequest;
+use App\Models\Dish;
+
 class DishController extends Controller
 {
     public function index()
@@ -9,9 +12,13 @@ class DishController extends Controller
         return view('dishes.index');
     }
 
-    public function store()
+    public function store(DishStoreRequest $request)
     {
-        return 'dish store request';
+        $validated = $request->validated();
+
+        Dish::create($validated);
+
+        return redirect('dishes');
     }
 
     public function update()

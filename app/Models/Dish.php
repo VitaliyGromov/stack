@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Dish extends Model
 {
     use HasFactory;
+
+    public $fillable = [
+        'dish_name'
+    ];
 }

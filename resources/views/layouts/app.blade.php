@@ -35,6 +35,10 @@
                         {{__('Продукты')}}
                     </x-button-link>
 
+                    <x-button-link href="{{ route('orders') }}" color="light">
+                        {{'Заказ продуктов'}}
+                    </x-button-link>
+
                     @role('администратор')
                         <x-button-link href="{{ route('users') }}" color="light">
                             {{__('Пользователи')}}
