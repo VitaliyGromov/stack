@@ -15,7 +15,7 @@ class Dish extends Model
         'dish_name'
     ];
 
-    public static function getdishNameById(int $dishId): string
+    public static function getDishNameById(int $dishId): string
     {
         $arrayOfDishFields = self::where('id', $dishId)->first()->toArray();
 

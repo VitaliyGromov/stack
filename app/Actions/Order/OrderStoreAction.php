@@ -19,4 +19,5 @@ class OrderStoreAction
         $product->update(['quantity' => $newQuantity]);
     }
 }
+
 ?>

@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('cooked_dishes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('dish_id')->constrained('dishes');
+            $table->foreignId('dish_id')->constrained('dishes')->onDelete('cascade');
             $table->integer('quantity');
             $table->timestamps();
         });

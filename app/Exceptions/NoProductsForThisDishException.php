@@ -13,6 +13,6 @@ class NoProductsForThisDishException extends Exception
 
     public function render()
     {
-        return view('errors.no-products'); //TODO временно
+        return view('errors.no-products');
     }
 }

@@ -1,5 +1,7 @@
 <?php
 namespace App\Actions\CookedDishes;
+
+use App\Exceptions\NoProductsForThisDishException;
 use App\Models\Dish;
 use App\Exceptions\NotEnoughProductInStockException;
 use App\Models\CookedDishes;
@@ -12,6 +14,10 @@ class CookedDishesStoreAction
         $dish = Dish::find($validated['dish_id']);
 
         $products = $dish->products->toArray();
+
+        if(sizeof($products) == 0){
+            throw new NoProductsForThisDishException('Для этого блюда пока не добавили продукты');
+        }
 
         foreach($products as $product)
         {

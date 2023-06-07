@@ -16,4 +16,9 @@ class DishProduct extends Model
         'product_id',
         'quantity'
     ];
+
+    public static function getDishProductByDishIdAndProductId(int $dishId, int $productId): DishProduct
+    {
+        return self::where('dish_id', $dishId)->where('product_id', $productId)->first();
+    }
 }

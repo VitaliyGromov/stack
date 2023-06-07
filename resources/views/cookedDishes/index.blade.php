@@ -33,6 +33,8 @@
             <tr>
               <th scope="col">{{__('id')}}</th>
               <th scope="col">{{__('Название блюда')}}</th>
+              <th scope="col">{{__('Количество')}}</th>
+              <th scope="col"></th>
               <th scope="col"></th>
             </tr>
           </thead>
@@ -41,6 +43,8 @@
               <tr>
                   <th scope="row">{{$cookedDish->id}}</th>
                   <td>{{Dish::getDishNameById($cookedDish->dish_id)}}</td>
+                  <td>{{$cookedDish->quantity}}</td>
+                  <td></td>
                   <td></td>
                 </tr>
               @endforeach

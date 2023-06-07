@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Dish\DishStoreRequest;
+use App\Http\Requests\Dish\DishFormRequest;
 use App\Models\Dish;
 
 class DishController extends Controller
@@ -12,7 +12,7 @@ class DishController extends Controller
         return view('dishes.index');
     }
 
-    public function store(DishStoreRequest $request)
+    public function store(DishFormRequest $request)
     {
         $validated = $request->validated();
 
@@ -25,18 +25,22 @@ class DishController extends Controller
     {  
         $products = $dish->products->toArray();
 
-        // dd($products);
-
         return view('dishes.show', compact(['dish', 'products']));
     }
 
-    public function update()
+    public function update(Dish $dish, DishFormRequest $request)
     {
-        return 'dish update request';
+        $validated = $request->validated();
+
+        $dish->update($validated);
+
+        return redirect()->back();
     }
 
-    public function delete()
+    public function destroy(Dish $dish)
     {
-        return 'delete dish requst';
+        $dish->delete();
+
+        return redirect('dishes');
     }
 }
