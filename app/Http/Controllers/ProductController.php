@@ -3,15 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Actions\ProductStoreAction;
+use App\Filters\ProductFilter;
+use App\Http\Requests\Product\ProductFilterRequest;
 use App\Http\Requests\Product\ProductStoreRequest;
-use Illuminate\Http\Request;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
     
-    public function index()
+    public function index(ProductFilterRequest $request)
     {
-        return view('products.index');
+        $validated = $request->validated();
+
+        $filter = app()->make(ProductFilter::class, ['queryParams' => array_filter($validated)]);
+
+        $products = Product::filter($filter)->get();
+
+        return view('products.index', compact('products'));
     }
 
     public function store(ProductStoreRequest $request, ProductStoreAction $action)
@@ -25,21 +33,11 @@ class ProductController extends Controller
 
     public function show(string $id)
     {
-        //
-    }
-
-    public function edit(string $id)
-    {
-        //
-    }
-
-    public function update(Request $request, string $id)
-    {
-        //
+        
     }
 
     public function destroy(string $id)
     {
-        //
+        
     }
 }

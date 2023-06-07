@@ -23,7 +23,7 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('dishes', Dish::all());
         });
 
-        View::composer(['products.index', 'components.product-select'], function($view){
+        View::composer(['components.product-select'], function($view){
             $view->with('products', Product::all());
         });
 
@@ -33,10 +33,6 @@ class ViewServiceProvider extends ServiceProvider
 
         View::composer('orders.index', function($view){
             $view->with('orders', Order::all());
-        });
-
-        View::composer('cookedDishes.index', function($view){
-            $view->with('cookedDishes', CookedDishes::all());
         });
     }
 }

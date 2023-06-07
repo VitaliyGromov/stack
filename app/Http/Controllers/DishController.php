@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Filters\DishFilter;
-use App\Http\Requests\Dish\DishFilterRequest;
-use App\Http\Requests\Dish\DishFormRequest;
 use App\Models\Dish;
+use App\Filters\DishFilter;
+use App\Http\Requests\Dish\DishFormRequest;
+use App\Http\Requests\Dish\DishFilterRequest;
+
 
 class DishController extends Controller
 {

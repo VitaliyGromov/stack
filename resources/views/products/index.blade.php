@@ -3,6 +3,16 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+      <form action="{{route('products')}}" method="GET">
+        <div class="input-group mb-3">
+          <input type="number" name="id" class="form-control me-3" placeholder="{{__('id продукта')}}">
+          <input type="text" name="product_name" class="form-control me-3" placeholder="{{__('Название продукта')}}">
+          <input type="text" name="quantity" class="form-control me-3" placeholder="{{__('Количество')}}">
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">{{__('Найти')}}</button>
+          </div>
+        </div>
+      </form>
       @if (sizeof($products) == 0)
           <h2>{{__('Пока не добавили ни одного продукта')}}</h2>
       @else

@@ -14,8 +14,8 @@ class DishFilterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'dish_name' => ['string'],
-            'id' => ['integer'],
+            'dish_name' => ['nullable','string'],
+            'id' => ['nullable','string'],
         ];
     }
 }
