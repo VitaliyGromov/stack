@@ -6,6 +6,14 @@
       @if (sizeof($dishes) == 0)
           <h2>{{__('Пока не добавили ни одного блюда')}}</h2>
       @else
+        <form action="{{route('dishes')}}" method="GET">
+          <div class="input-group mb-3">
+            <input type="text" name="dish_name" class="form-control me-3" placeholder="{{__('Название блюда')}}" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button type="submit" class="btn btn-primary">{{__('Найти')}}</button>
+            </div>
+          </div>
+        </form>
         <table class="table">
           <thead>
             <tr>

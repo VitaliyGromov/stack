@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
+use App\Traits\HasFilter;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Dish extends Model
 {
-    use HasFactory;
+    use HasFactory,  HasFilter;
 
     public $fillable = [
         'dish_name'

@@ -19,7 +19,7 @@ class ViewServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        View::composer(['dishes.index', 'components.dish-select'], function($view){
+        View::composer(['components.dish-select'], function($view){
             $view->with('dishes', Dish::all());
         });
 
