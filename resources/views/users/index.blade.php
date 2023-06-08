@@ -67,6 +67,10 @@
               <x-button-link href="{{route('users.save.json')}}">
                 {{__('Сохранить в JSON')}}
               </x-button-link>
+
+              <x-button-link href="{{route('users.save.xml')}}">
+                {{__('Сохранить в XML')}}
+              </x-button-link>
             </div>
           </div>
           <div>

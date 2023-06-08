@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Actions\User\UserStoreAction;
 use App\Helpers\TableToJsonConverter;
+use App\Helpers\TableToXmlFormater;
 use App\Http\Requests\User\UserStoreRequest;
 use App\Http\Requests\User\UserFilterRequest;
 use App\Services\FilteredModelService;
@@ -41,6 +42,17 @@ class UserController extends Controller
         $tableToJsonCoverter = new TableToJsonConverter($users);
 
         $tableToJsonCoverter->save();
+
+        return redirect()->back();
+    }
+
+    public function saveToXml(UserFilterRequest $request, FilteredModelService $service)
+    {
+        $users = $service->getFilteredModel($request);
+
+        $tableToXmlFormater = new TableToXmlFormater($users);
+
+        $tableToXmlFormater->save();
 
         return redirect()->back();
     }
