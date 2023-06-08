@@ -7,6 +7,17 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+      <form action="{{route('orders')}}" method="GET">
+        <div class="mb-3">
+          <x-product-select/>
+          <input type="number" name="id" class="form-control mb-3" placeholder="{{__('id заказа')}}">
+          <input type="number" name="quantity" class="form-control mb-3" placeholder="{{__('Количество')}}">
+          <input type="date" name="order_date" class="form-control mb-3">
+          <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">{{__('Найти')}}</button>
+          </div>
+        </div>
+      </form>
       @if (sizeof($orders) == 0)
           <h2>{{__('Пока не создали ни одного заказа')}}</h2>
       @else
@@ -29,7 +40,7 @@
                   <td>{{$order->quantity}}</td>
                   <td>{{$order->price}}</td>
                   <td>{{$order->order_date}}</td>
-                  <td><a>Перейти</a></td>
+                  <td></td>
                 </tr>
               @endforeach
           </tbody>

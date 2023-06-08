@@ -8,15 +8,10 @@
 <div class="container">
     <div class="row justify-content-center">
       <form action="{{route('cooked_dishes')}}" method="GET">
-        <div class="input-group mb-3">
-          <input type="number" name="id" class="form-control me-3" placeholder="{{__('id записи')}}">
-          <select class="form-control me-3" name="dish_id">
-            <option value="">{{__('Выберите продукт')}}</option>
-            @foreach ($cookedDishes as $cookedDish)
-                <option value="{{$cookedDish->dish_id}}">{{Dish::getDishNameById($cookedDish->dish_id)}}</option>
-            @endforeach
-          </select>
-          <input type="number" name="quantity" class="form-control me-3" placeholder="{{__('Количество')}}">
+        <div class="mb-3">
+          <x-dish-select/>
+          <input type="number" name="id" class="form-control mb-3" placeholder="{{__('id записи')}}">
+          <input type="number" name="quantity" class="form-control mb-3" placeholder="{{__('Количество')}}">
           <div class="input-group-append">
             <button type="submit" class="btn btn-primary">{{__('Найти')}}</button>
           </div>

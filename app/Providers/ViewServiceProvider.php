@@ -2,13 +2,12 @@
 
 namespace App\Providers;
 
-use App\Models\CookedDishes;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\Dish;
-use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class ViewServiceProvider extends ServiceProvider
 {
@@ -27,12 +26,8 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('products', Product::all());
         });
 
-        View::composer('users.index', function($view){
-            $view->with('users', User::all());
-        });
-
-        View::composer('orders.index', function($view){
-            $view->with('orders', Order::all());
+        View::composer('components.role-select', function($view){
+            $view->with('roles', Role::all());
         });
     }
 }

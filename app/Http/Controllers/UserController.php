@@ -2,43 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\User\UserStoreRequest;
-use Illuminate\Http\Request;
 use App\Models\User;
+use App\Actions\User\UserStoreAction;
+use App\Filters\UserFilter;
+use App\Http\Requests\User\UserFilterRequest;
+use App\Http\Requests\User\UserStoreRequest;
+
 
 class UserController extends Controller
 {
-    public function index()
-    {
-        return view('users.index');
-    }
-
-    public function store(UserStoreRequest $request)
+    public function index(UserFilterRequest $request)
     {
         $validated = $request->validated();
 
-        User::create($validated);
+        $filter = app()->make(UserFilter::class, ['queryParams' => array_filter($validated)]);
+
+        $users = User::filter($filter)->get();
+
+        return view('users.index', compact('users'));
+    }
+
+    public function store(UserStoreRequest $request, UserStoreAction $action)
+    {
+        $validated = $request->validated();
+
+        $action->handle($validated);
 
         return redirect('users');
     }
 
-    public function show(string $id)
+    public function destroy(User $user)
     {
-        
-    }
+        $user->delete();
 
-    public function edit(string $id)
-    {
-        
-    }
-
-    public function update(Request $request, string $id)
-    {
-        
-    }
-
-    public function destroy(string $id)
-    {
-        
+        return redirect('users');
     }
 }
