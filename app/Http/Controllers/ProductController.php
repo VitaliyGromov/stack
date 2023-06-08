@@ -10,7 +10,6 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    
     public function index(ProductFilterRequest $request)
     {
         $validated = $request->validated();
@@ -29,15 +28,5 @@ class ProductController extends Controller
         $action->handle($validated);
 
         return redirect('products');
-    }
-
-    public function show(string $id)
-    {
-        
-    }
-
-    public function destroy(string $id)
-    {
-        
     }
 }

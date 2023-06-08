@@ -4,20 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Actions\User\UserStoreAction;
-use App\Filters\UserFilter;
-use App\Http\Requests\User\UserFilterRequest;
+use App\Helpers\TableToJsonConverter;
 use App\Http\Requests\User\UserStoreRequest;
-
+use App\Http\Requests\User\UserFilterRequest;
+use App\Services\FilteredModelService;
 
 class UserController extends Controller
 {
-    public function index(UserFilterRequest $request)
+    public function index(UserFilterRequest $request, FilteredModelService $service)
     {
-        $validated = $request->validated();
-
-        $filter = app()->make(UserFilter::class, ['queryParams' => array_filter($validated)]);
-
-        $users = User::filter($filter)->get();
+        $users = $service->getFilteredModel($request);
 
         return view('users.index', compact('users'));
     }
@@ -36,5 +32,16 @@ class UserController extends Controller
         $user->delete();
 
         return redirect('users');
+    }
+
+    public function saveToJson(UserFilterRequest $request, FilteredModelService $service)
+    {
+        $users = $service->getFilteredModel($request);
+
+        $tableToJsonCoverter = new TableToJsonConverter($users);
+
+        $tableToJsonCoverter->save();
+
+        return redirect()->back();
     }
 }

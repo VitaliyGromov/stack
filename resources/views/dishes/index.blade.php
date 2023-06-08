@@ -15,7 +15,7 @@
       @if (sizeof($dishes) == 0)
           <h2>{{__('Пока не добавили ни одного блюда')}}</h2>
       @else
-        <table class="table">
+        <x-table>
           <thead>
             <tr>
               <th scope="col">{{__('id')}}</th>
@@ -32,12 +32,20 @@
                 </tr>
               @endforeach
           </tbody>
-        </table>
+        </x-table>
       @endif
-          <div>
+        <div class="row">
+          <div class="col-12">
             <x-modal-button modalId="createDish">
               {{__('Новое блюдо')}}
             </x-modal-button>
+
+            <x-modal-button modalId="totalDishes">
+              {{__('Итоги')}}
+            </x-modal-button>
+          </div>
+        </div>
+          <div class="btn-group">
             <form action="{{route('dish.store')}}" method="POST">
               @csrf
               <x-modal modalId="createDish" title="{{__('Новое блюдо')}}">
@@ -46,6 +54,9 @@
                 </x-form-input>
               </x-modal>
             </form>
+              <x-modal modalId="totalDishes" title="{{__('Итоги по блюдам')}}">
+                @livewire('total-dishes')
+              </x-modal>
           </div>
       </div>
 </div>

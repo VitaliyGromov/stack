@@ -45,10 +45,18 @@
           </tbody>
         </table>
       @endif
+      <div class="row">
+        <div class="col-12">
+          <x-modal-button modalId="cookDish">
+            {{__('Добавить блюдо')}}
+          </x-modal-button>
+
+          <x-modal-button modalId="totalCookedDishes">
+            {{__('Отчет по готовым блюдам')}}
+          </x-modal-button>
+        </div>
+      </div>
       <div>
-        <x-modal-button modalId="cookDish">
-          {{__('Добавить блюдо')}}
-        </x-modal-button>
         <form action="{{route('cooked_dishes.store') }}" method="POST">
           @csrf
           <x-modal modalId="cookDish" title="{{__('Новое блюдо')}}">
@@ -60,7 +68,10 @@
             
           </x-modal>
         </form>
+        <x-modal modalId="totalCookedDishes">
+          @livewire('total-cooked-dishes')
+        </x-modal>
       </div>
-      </div>
+    </div>
 </div>
 @endsection

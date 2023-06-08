@@ -7,6 +7,7 @@ Route::middleware('auth')->group(function(){
     Route::get('users', [UserController::class, 'index'])->name('users');
     Route::post('users', [UserController::class, 'store'])->name('users.store');
     Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('users/save/json', [UserController::class, 'saveToJson'])->name('users.save.json');
 });
 
 ?>

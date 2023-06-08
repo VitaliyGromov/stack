@@ -46,10 +46,18 @@
           </tbody>
         </table>
       @endif
-          <div>
+        <div class="row">
+          <div class="col-12">
             <x-modal-button modalId="createOrder">
               {{__('Новый заказ')}}
             </x-modal-button>
+
+            <x-modal-button modalId="totalOrders">
+              {{__('Итоги по заказам')}}
+            </x-modal-button>
+          </div>
+        </div>
+          <div>
             <form action="{{ route('orders.store') }}" method="POST">
               @csrf
               <x-modal modalId="createOrder" title="{{__('Новый заказ продукта')}}">
@@ -66,9 +74,11 @@
                 <x-form-input inputName="order_date" inputType="date">
                     {{__('Дата заказа')}}
                 </x-form-input>
-
               </x-modal>
             </form>
+            <x-modal modalId="totalOrders" title="{{__('Итоги по заказам')}}">
+              @livewire('total-orders')
+            </x-modal>
           </div>
     </div>
 </div>

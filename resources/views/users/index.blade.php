@@ -54,10 +54,22 @@
                 @endforeach
             </tbody>
           </table>
+          <div class="row">
+            <div class="col-12">
+              <x-modal-button modalId="createUser">
+                {{__('Добавить пользователя')}}
+              </x-modal-button>
+
+              <x-modal-button modalId="totalUsers">
+                {{__('Итоги по пользователям')}}
+              </x-modal-button>
+
+              <x-button-link href="{{route('users.save.json')}}">
+                {{__('Сохранить в JSON')}}
+              </x-button-link>
+            </div>
+          </div>
           <div>
-            <x-modal-button modalId="createUser">
-              {{__('Добавить пользователя')}}
-            </x-modal-button>
             <form action="{{route('users.store')}}" method="POST">
               @csrf
               <x-modal modalId="createUser" title="{{__('Добавить пользователя')}}">
@@ -88,6 +100,9 @@
 
               </x-modal>
             </form>
+            <x-modal modalId="totalUsers">
+              @livewire('total-users')
+            </x-modal>
           </div>
     </div>
 </div>
