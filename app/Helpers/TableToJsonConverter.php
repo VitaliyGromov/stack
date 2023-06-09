@@ -29,7 +29,7 @@ class TableToJsonConverter
 
         $json_data = json_encode($this->convertTableToArray(), JSON_UNESCAPED_UNICODE);
 
-        Storage::disk('public')->put("$table-in-json.json", $json_data); //TODO сделать нормальное скачивание
+        Storage::disk('public')->put("$table-in-json.json", $json_data);
     }
 }
 

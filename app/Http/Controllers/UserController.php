@@ -9,12 +9,13 @@ use App\Helpers\TableToXmlFormater;
 use App\Http\Requests\User\UserStoreRequest;
 use App\Http\Requests\User\UserFilterRequest;
 use App\Services\FilteredModelService;
+use App\Filters\UserFilter;
 
 class UserController extends Controller
 {
     public function index(UserFilterRequest $request, FilteredModelService $service)
     {
-        $users = $service->getFilteredModel($request);
+        $users = $service->getFilteredModel($request, User::class, UserFilter::class);
 
         return view('users.index', compact('users'));
     }
@@ -37,7 +38,7 @@ class UserController extends Controller
 
     public function saveToJson(UserFilterRequest $request, FilteredModelService $service)
     {
-        $users = $service->getFilteredModel($request);
+        $users = $service->getFilteredModel($request, User::class, UserFilter::class);
 
         $tableToJsonCoverter = new TableToJsonConverter($users);
 
@@ -48,7 +49,7 @@ class UserController extends Controller
 
     public function saveToXml(UserFilterRequest $request, FilteredModelService $service)
     {
-        $users = $service->getFilteredModel($request);
+        $users = $service->getFilteredModel($request, User::class, UserFilter::class);
 
         $tableToXmlFormater = new TableToXmlFormater($users);
 

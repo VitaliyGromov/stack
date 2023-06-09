@@ -42,7 +42,11 @@
                         <td>-</td>
                     @endif
                     <td>{{$user->email}}</td>
-                    <td>{{$user->getRoleNames()[0]}}</td>
+                    @if (!sizeof($user->getRoleNames()->toArray()) == 0)
+                      <td>{{$user->getRoleNames()[0]}}</td>
+                    @else
+                      <td>-</td>
+                    @endif
                     <td>
                       <form action="{{route('users.destroy', $user->id)}}" method="POST">
                         @csrf
@@ -71,6 +75,7 @@
               <x-button-link href="{{route('users.save.xml')}}">
                 {{__('Сохранить в XML')}}
               </x-button-link>
+
             </div>
           </div>
           <div>
